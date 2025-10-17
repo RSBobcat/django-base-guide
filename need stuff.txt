@@ -1,0 +1,5 @@
+#venv
+D:\shoop\shop\venv\Scripts\Activate.ps1
+
+#password of superuser
+RS Bobcat
