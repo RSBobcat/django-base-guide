@@ -1,0 +1,38 @@
+{% extends 'main/product/base.html' %}
+
+{% block title %}
+Список товаров - 7Days
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="mb-4">Список товаров</h1>
+    </div>
+</div>
+
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text">{{ product.description|truncatechars:100 }}</p>
+                <p class="card-text"><strong>Цена:</strong> {{ product.price }} ₼</p>
+                <div class="product-images mt-3">
+                    {% for image in product.productimage_set.all %}
+                    <img src="{{ image.image.url }}" alt="Image of {{ product.name }}" class="img-thumbnail mr-2" style="width: 50px; height: 50px;">
+                    {% endfor %}
+                </div>
+                <a href="{{ product.get_absolute_url }}" class="btn btn-primary mt-3">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+        <p>Товары отсутствуют.</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
